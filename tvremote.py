@@ -1,15 +1,26 @@
+import os.path
+import pickle
 class TVRemote:
     def __init__(self):
-        self.channel_number = 0
+        #self.channel_number = 0
         self.min_channel_number = 0
         self.max_channel_number = 100
 
-        self.volume = 10
+        #self.volume = 10
         self.min_volume = 0
         self.max_volume = 100
 
         self.is_tv_on = True
         self.num_options = 7
+
+        if not os.path.isfile('./savetvstate'):
+            self.channel_number = 0
+            self.volume = 10
+            with open('./savetvstate', 'w') as f:
+                pickle.dump([self.channel_number, self.volume], f)
+        else:
+            with open('./savetvstate', 'r') as f:
+                self.channel_number, self.volume = pickle.load(f)
 
     def display_options(self):
         print "1. Channel (+)"
@@ -21,6 +32,8 @@ class TVRemote:
         print "7. OFF"
 
     def turn_off(self):
+        with open('./savetvstate', 'w') as f:
+            pickle.dump([self.channel_number, self.volume], f)
         print "TV is turned off."
         self.is_tv_on = False
 
@@ -72,9 +85,10 @@ class TVRemote:
         else:
             return 0
 
-
 print 'TV is ON'
 tvremote = TVRemote()
+print 'You are watching channel {0}'.format(tvremote.channel_number)
+print 'Volume: {0}'.format(tvremote.volume)
 while tvremote.is_tv_on:
     tvremote.display_options()
 
