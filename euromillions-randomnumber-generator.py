@@ -6,7 +6,7 @@ def euromillions_number_generator():
     numbers = []
     luckystars = []
 
-    while len(numbers) != 6:
+    while len(numbers) != 5:
         n = random.randint(1, 50)
         if n not in numbers:
             numbers.append(n)
