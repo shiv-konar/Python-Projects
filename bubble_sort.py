@@ -7,7 +7,7 @@ for i in range(5):
 
 def bubblesort(random_list):
     for i in range(len(random_list) - 1):
-        for j in range(len(random_list) - 1):
+        for j in range(len(random_list) - 1 - i):
             print "Is {} > {}? {}".format(random_list[j], random_list[j + 1], random_list[j] >random_list[j + 1])
             if random_list[j] >= random_list[j + 1]:
                 print "Switch\n"
