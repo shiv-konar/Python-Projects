@@ -1,6 +1,7 @@
 import re
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
+import nltk
 url = 'http://programminghistorian.org/lessons/working-with-web-pages'
 
 soup = BeautifulSoup(urlopen(url), 'html.parser')
@@ -8,6 +9,11 @@ soup = BeautifulSoup(urlopen(url), 'html.parser')
 soup_str = ''.join(soup.text).encode('utf-8').lower().strip()
 
 words_list = re.findall(r'[A-Za-z]+', soup_str.strip())
+
+words_text = ' '.join(a for a in words_list)
+text = nltk.word_tokenize(words_text)
+
+print nltk.pos_tag(text)
 
 words_count = {}
 
