@@ -1,3 +1,9 @@
+"""
+Calculating n digits of Pi using Chudnovsky's algorithm
+https://en.wikipedia.org/wiki/Chudnovsky_algorithm
+http://www.craig-wood.com/nick/articles/pi-chudnovsky/
+"""
+
 from decimal import *
 import math, sys
 from math import factorial
